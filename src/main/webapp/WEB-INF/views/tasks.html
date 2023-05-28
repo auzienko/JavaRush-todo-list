@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <script src=/js/jquery-3.6.0.min.js></script>
+    <script src=/js/main.js></script>
+</head>
+<body>
+<table class="blueTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr th:if= "${pageCount > 1}">
+        <td colspan="5">
+            <div class="links">
+                <a th:each="pageNumber :  ${#numbers.sequence(1, pageCount)}"
+                   th:href="@{/(page=${pageNumber}, limit=${limit})}"
+                   th:text="${pageNumber}"/>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+    <tbody>
+    <tr th:each="task : ${listOfTasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.description}"></td>
+        <td th:text="${task.status}" th:id="'select_status_' + ${task.id}"></td>
+        <td>
+            <button th:id="'edit_' + ${task.id}" th:onclick="'editTask(' + ${task.id} + ')'">✍️ Edit</button>
+        </td>
+        <td>
+            <button th:id="'delete_' + ${task.id}" th:onclick="'deleteTask(' + ${task.id} + ')'">❌ Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -39,6 +39,9 @@ public class PropertiesService {
     @Value("${template.resolver.suffix}")
     private String resolverSuffix;
 
+    @Value("${template.resolver.encoding}")
+    private String encoding;
+
     @Value("${template.resolver.cacheable}")
     private Boolean cacheable;
 }
