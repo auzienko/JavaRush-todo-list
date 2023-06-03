@@ -16,8 +16,6 @@
         let status = children[2];
         let statusId = "#select_" + id;
         let statusCurrentValue = status.innerHTML;
-        console.log($(statusId));
-        console.log(statusCurrentValue);
         status.innerHTML = getStatusDropdown(id);
         $(statusId).val(statusCurrentValue).change();
     }
@@ -31,14 +29,11 @@
     }
 
     function updateTask(id) {
-            let url = "/" + id;
-            let type = "POST";
+        let url = "/" + id;
+        let type = "POST";
 
-            let description = $("#input_description_" + id).val();
-            let status = $("#select_" + id).val();
-
-            console.log(status);
-
+        let description = $("#input_description_" + id).val();
+        let status = $("#select_" + id).val();
 
         $.ajax({
             url: url,
@@ -65,4 +60,25 @@
                 window.location.reload();
             }
         });
+    }
+
+    function addTask() {
+         let url = "/";
+         let type = "POST";
+         let description = $("#new_task_description").val();
+         let status = $("#new_task_status").val();
+
+         $.ajax({
+             url: url,
+             type: type,
+             async: false,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             data: JSON.stringify({"description": description, "status": status})
+         });
+
+         setTimeout(
+             () => {
+                 document.location.reload();
+             }, 300);
     }

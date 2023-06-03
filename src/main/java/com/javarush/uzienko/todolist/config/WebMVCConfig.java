@@ -1,6 +1,6 @@
 package com.javarush.uzienko.todolist.config;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +14,7 @@ import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Configuration
 @EnableWebMvc
 @ComponentScan({"com.javarush.uzienko"})
@@ -47,7 +47,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(this.templateEngine());
         viewResolver.setCharacterEncoding(propertiesService.getEncoding());
-        viewResolver.setCache(propertiesService.getCacheable());   /* FYI: during development -> false */
+        viewResolver.setCache(propertiesService.getCacheable());
         return viewResolver;
     }
 

@@ -41,7 +41,22 @@
             <button th:id="'delete_' + ${task.id}" th:onclick="'deleteTask(' + ${task.id} + ')'">❌ Delete</button>
         </td>
     </tr>
-    </tbody>
-</table>
+    </tbody></table>
+    <div style="width: fit-content;">
+       <h3>Add new Task</h3>
+        <table class="blueTable">
+            <tr>
+                <td>👉</td>
+                <td><input id='new_task_description' type='text' value=''/></td>
+                <td><select id='new_task_status'>
+                    <option value='IN_PROGRESS'>IN_PROGRESS</option>
+                    <option value='DONE'>DONE</option>
+                    <option value='PAUSED'>PAUSED</option>
+                    </select>
+                </td>
+                <td><button id="add" th:onclick="addTask()">🐣 Add</button></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
